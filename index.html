@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>ONYX Cinema - Đặt Vé Xem Phim Trực Tuyến</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+<script src="https://cdn.botpress.cloud/webchat/v5.0/inject.js"></script>
+<script src="https://files.bpcontent.cloud/2026/11/01/09/20261101094552-9GA4GZEQ.js" defer></script>
+</head>
+<body class="min-h-screen bg-[#121212] text-[#F5F5F5] antialiased selection:bg-[#FFC107] selection:text-black pb-28">
+
+  <!-- TOP BANNER -->
+  <header class="sticky top-0 z-40 bg-[#121212]/95 backdrop-blur-md border-b border-[#FFC107]/40 shadow-lg shadow-black/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 flex flex-wrap items-center justify-between text-xs sm:text-sm">
+      <div class="flex items-center gap-2">
+        <span class="inline-flex items-center justify-center px-2 py-0.5 rounded text-[11px] font-bold bg-[#FFC107] text-black uppercase tracking-wider">Ưu đãi</span>
+        <span class="font-medium text-neutral-200">Ưu đãi đặt vé</span>
+      </div>
+      <div class="flex items-center gap-3 mt-1 sm:mt-0 font-mono text-neutral-400">
+        <span class="text-neutral-500 hidden md:inline">Thời gian còn lại:</span>
+        <div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#1e1e24] border border-neutral-700/60 text-[#FFC107] font-semibold text-xs tracking-wider">
+          <svg class="w-3.5 h-3.5 animate-pulse text-[#FFC107]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+          </svg>
+          <span id="countdown">03:42:18</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVBAR -->
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between border-b border-[#222226]">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-lg bg-[#FFC107] flex items-center justify-center font-display font-black text-black text-xl shadow-md shadow-[#FFC107]/20">
+        ▶
+      </div>
+      <div>
+        <span class="font-display font-black tracking-wider text-xl text-white">ONYX <span class="text-[#FFC107]">CINEMA</span></span>
+        <span class="hidden sm:inline-block text-[10px] uppercase tracking-widest text-neutral-400 border-l border-neutral-700 ml-2 pl-2">Premium Cinema</span>
+      </div>
+    </div>
+    <div class="flex items-center gap-6 text-sm">
+      <a class="text-neutral-300 hover:text-[#FFC107] transition-colors" href="#showcase">Phim Đang Chiếu</a>
+      <a class="text-[#FFC107] hover:underline transition-colors flex items-center gap-1" href="#vip-privileges">
+        <span>★ Đặc Quyền VIP</span>
+      </a>
+      <a class="text-neutral-300 hover:text-[#FFC107] transition-colors" href="#booking-section">Sơ Đồ Ghế</a>
+      <a class="px-4 py-2 rounded-lg bg-[#1e1e24] border border-[#FFC107]/50 text-[#FFC107] hover:bg-[#FFC107] hover:text-black font-semibold text-xs tracking-wide transition-all shadow-sm" href="#booking-section">
+        Đặt Vé Nhanh
+      </a>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-10 space-y-16">
+    
+    <!-- 1. MOVIE SHOWCASE SECTION -->
+    <section id="showcase">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1e1e24] border border-neutral-700/80 text-[#FFC107] text-xs font-medium mb-3">
+            <span class="w-2 h-2 rounded-full bg-[#FFC107] animate-ping"></span>
+            Lịch Chiếu Hôm Nay
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-extrabold font-display tracking-tight text-white">
+            CHỌN BỘ PHIM <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#FFC107] to-[#FFD700]">YÊU THÍCH</span>
+          </h1>
+          <p class="text-neutral-400 text-sm mt-1 max-w-xl">
+            Tận hưởng không gian điện ảnh đỉnh cao với âm thanh Dolby Atmos và ghế đệm da cao cấp. Nhấp vào ảnh phim để xem mô tả chi tiết.
+          </p>
+        </div>
+      </div>
+
+      <!-- Movie Cards Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="movie-grid">
+        <!-- Movies populated dynamically via JS -->
+      </div>
+    </section>
+
+    <!-- 2. VIP PRIVILEGES BANNER -->
+    <section class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#1c1809] via-[#151412] to-[#121212] border border-[#FFC107]/50 p-6 sm:p-8 shadow-2xl shadow-black/80" id="vip-privileges">
+      <div class="absolute -right-20 -top-20 w-80 h-80 rounded-full bg-[#FFC107]/15 blur-3xl pointer-events-none"></div>
+      <div class="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 pb-6 border-b border-[#3d3319]">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFC107]/15 border border-[#FFC107]/40 text-[#FFC107] text-xs font-bold uppercase tracking-wider mb-2">
+            <span>👑 ONYX VIP LUXE PRIVILEGES</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold font-display text-white tracking-tight">
+            ĐẶC QUYỀN KHÁCH HÀNG VIP <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#FFC107] to-[#FFD700]">THƯỢNG HẠNG</span>
+          </h2>
+          <p class="text-neutral-400 text-xs sm:text-sm mt-1 max-w-2xl">
+            Nâng tầm trải nghiệm điện ảnh hoàng gia cùng hàng ghế VIP Luxe Recliner. Mỗi tấm vé VIP là tấm hộ chiếu đặc quyền dịch vụ thượng lưu.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center gap-3 w-full lg:w-auto">
+          <div class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#FFC107]/20 to-[#FFD700]/10 border border-[#FFC107] text-left shadow-lg shadow-[#FFC107]/15 flex-1 lg:flex-initial">
+            <div class="flex items-center gap-1.5">
+              <span class="text-[10px] uppercase font-black text-[#FFC107] tracking-wider">Ghế VIP Luxe Suite</span>
+              <span class="text-[9px] px-1.5 py-0.2 rounded bg-[#FFC107] text-black font-extrabold">All-in</span>
+            </div>
+            <span class="text-base font-extrabold font-display text-[#FFD700]">290.000 VNĐ</span>
+          </div>
+        </div>
+      </div>
+      <div class="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+        <div class="p-4 rounded-2xl bg-[#18181c]/90 border border-[#383321]">
+          <div class="w-11 h-11 rounded-xl bg-[#262211] border border-[#FFC107]/40 flex items-center justify-center text-2xl mb-3">🍿</div>
+          <h4 class="font-bold text-sm text-white">Khay Ẩm Thực Miễn Phí</h4>
+          <p class="text-xs text-neutral-400 mt-1.5">Tặng kèm Bắp rang bơ Truffle thượng hạng & Mocktail tươi cao cấp phục vụ tận nơi.</p>
+        </div>
+        <div class="p-4 rounded-2xl bg-[#18181c]/90 border border-[#383321]">
+          <div class="w-11 h-11 rounded-xl bg-[#262211] border border-[#FFC107]/40 flex items-center justify-center text-2xl mb-3">🛋️</div>
+          <h4 class="font-bold text-sm text-white">Ghế Recliner Điện 160°</h4>
+          <p class="text-xs text-neutral-400 mt-1.5">Ghế da thật nhập khẩu ngả điện 160°, tích hợp cổng sạc Type-C cùng gối mền nhung.</p>
+        </div>
+        <div class="p-4 rounded-2xl bg-[#18181c]/90 border border-[#383321]">
+          <div class="w-11 h-11 rounded-xl bg-[#262211] border border-[#FFC107]/40 flex items-center justify-center text-2xl mb-3">🛎️</div>
+          <h4 class="font-bold text-sm text-white">Chuông Phục Vụ Riêng</h4>
+          <p class="text-xs text-neutral-400 mt-1.5">Nút gọi tiếp viên chăm sóc cá nhân riêng tại chỗ 24/7 trong suốt suất chiếu.</p>
+        </div>
+        <div class="p-4 rounded-2xl bg-[#18181c]/90 border border-[#383321]">
+          <div class="w-11 h-11 rounded-xl bg-[#262211] border border-[#FFC107]/40 flex items-center justify-center text-2xl mb-3">🚪</div>
+          <h4 class="font-bold text-sm text-white">VIP Lounge & Fast Track</h4>
+          <p class="text-xs text-neutral-400 mt-1.5">Phòng chờ VIP sang trọng không gian riêng biệt, check-in lối đi ưu tiên đặc cách.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. EXPANDED SEATING GRID SECTION -->
+    <section class="bg-[#18181b] rounded-3xl p-6 sm:p-10 border border-[#2e2e33] relative" id="booking-section">
+      <div class="text-center max-w-3xl mx-auto mb-8">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#222226] border border-[#FFC107]/40 text-[#FFC107] text-xs font-semibold uppercase tracking-wider mb-3">
+          <span class="w-2 h-2 rounded-full bg-[#FFC107] animate-pulse"></span>
+          Sơ Đồ Phòng Chiếu ONYX Cinema (Sức Chứa 120 Ghế)
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold font-display text-white mt-1">SƠ ĐỒ GHẾ NGỒI TRỰC TUYẾN</h2>
+        <p class="text-xs sm:text-sm text-neutral-400 mt-2">Khu Ghế Tiêu Chuẩn (Hàng A – F • 72 ghế) • Khu Ghế VIP Recliner Suite (Hàng G – J • 48 ghế)</p>
+      </div>
+
+      <!-- Màn hình cong (Screen) -->
+      <div class="max-w-4xl mx-auto mb-10">
+        <div class="curved-screen pt-4 pb-3 text-center bg-gradient-to-b from-[#FFC107]/15 via-[#FFC107]/5 to-transparent">
+          <span class="font-display font-bold tracking-[0.35em] text-xs text-[#FFC107] uppercase">MÀN HÌNH (SCREEN)</span>
+        </div>
+        <div class="text-center text-[11px] text-neutral-500 mt-2 tracking-wider">▲ HƯỚNG MẮT NHÌN CHÍNH DIỆN ▲</div>
+      </div>
+
+      <!-- SEATING LAYOUT CONTAINER -->
+      <div class="max-w-5xl mx-auto overflow-x-auto pb-4">
+        <div class="min-w-[760px] space-y-3.5 mb-8" id="seating-grid">
+          <!-- Standard Seats Header -->
+          <div class="flex items-center justify-between px-3 py-2 rounded-lg bg-[#141416] border border-neutral-800 text-xs text-neutral-400 mb-4">
+            <span class="font-semibold text-neutral-300 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-neutral-400"></span>KHU GHẾ TIÊU CHUẨN (STANDARD – 95.000 VNĐ)
+            </span>
+            <span class="text-[11px] text-neutral-500 font-mono">Hàng A – F (12 ghế / hàng)</span>
+          </div>
+
+          <!-- Standard Seats Grid -->
+          <div id="standard-seats-container" class="space-y-2.5"></div>
+
+          <!-- VIP Seats Header -->
+          <div class="flex items-center justify-between px-3 py-2 rounded-lg bg-[#221c08] border border-[#FFC107]/30 text-xs text-[#FFC107] my-6">
+            <span class="font-semibold flex items-center gap-2">
+              <span>👑</span> KHU GHẾ VIP LUXE RECLINER (290.000 VNĐ)
+            </span>
+            <span class="text-[11px] text-[#FFC107]/70 font-mono">Hàng G – J (12 ghế / hàng)</span>
+          </div>
+
+          <!-- VIP Seats Grid -->
+          <div id="vip-seats-container" class="space-y-2.5"></div>
+        </div>
+
+        <!-- Legend -->
+        <div class="flex flex-wrap items-center justify-center gap-6 pt-6 border-t border-neutral-800 text-xs text-neutral-400">
+          <div class="flex items-center gap-2">
+            <div class="w-5 h-5 rounded bg-[#222226] border border-neutral-700"></div>
+            <span>Ghế thường (95k)</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="w-5 h-5 rounded bg-[#2a2410] border border-[#FFC107]/50"></div>
+            <span>Ghế VIP (290k)</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="w-5 h-5 rounded bg-[#FFC107] text-black font-bold flex items-center justify-center text-[10px]">✓</div>
+            <span>Đang chọn</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="w-5 h-5 rounded bg-neutral-800 border border-neutral-800 opacity-40 cursor-not-allowed"></div>
+            <span>Đã đặt</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER SECTION -->
+  <footer class="mt-20 border-t border-[#222226] bg-[#0c0c0e] text-neutral-400 text-xs pt-12 pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 pb-10 border-b border-neutral-800/80">
+        <!-- Col 1: Brand Info -->
+        <div class="lg:col-span-2 space-y-4">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-[#FFC107] flex items-center justify-center font-display font-black text-black text-lg">▶</div>
+            <span class="font-display font-black tracking-wider text-xl text-white">ONYX <span class="text-[#FFC107]">CINEMA</span></span>
+          </div>
+          <p class="text-neutral-400 text-xs leading-relaxed max-w-sm">
+            Hệ thống rạp chiếu phim đẳng cấp quốc tế. Trải nghiệm công nghệ chiếu phim IMAX Laser, âm thanh vòm Dolby Atmos đỉnh cao cùng dịch vụ hàng ghế VIP Luxe chuyên nghiệp.
+          </p>
+          <div class="flex items-center gap-3 pt-2">
+            <div class="w-8 h-8 rounded-full bg-[#1e1e24] border border-neutral-700 flex items-center justify-center text-white">f</div>
+            <div class="w-8 h-8 rounded-full bg-[#1e1e24] border border-neutral-700 flex items-center justify-center text-white">yt</div>
+            <div class="w-8 h-8 rounded-full bg-[#1e1e24] border border-neutral-700 flex items-center justify-center text-white">ig</div>
+            <div class="w-8 h-8 rounded-full bg-[#1e1e24] border border-neutral-700 flex items-center justify-center text-white">tt</div>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div class="space-y-3">
+          <h4 class="font-bold text-white text-sm uppercase tracking-wider">Quy Định & Điều Khoản</h4>
+          <ul class="space-y-2 text-neutral-400">
+            <li>Điều khoản sử dụng</li>
+            <li>Chính sách thanh toán</li>
+            <li>Chính sách bảo mật</li>
+            <li>Câu hỏi thường gặp</li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Cinema Info -->
+        <div class="space-y-3">
+          <h4 class="font-bold text-white text-sm uppercase tracking-wider">Hệ Thống Rạp</h4>
+          <ul class="space-y-2 text-neutral-400">
+            <li>ONYX Landmark 81</li>
+            <li>ONYX Tây Hồ Hanoi</li>
+            <li>ONYX Đà Nẵng Center</li>
+            <li>Tất cả cụm rạp</li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Apps & Contact -->
+        <div class="space-y-3">
+          <h4 class="font-bold text-white text-sm uppercase tracking-wider">Chăm Sóc Khách Hàng</h4>
+          <p class="text-xs">Hotline: <strong class="text-[#FFC107]">1900 123 456</strong></p>
+          <p class="text-xs">Email: cskh@onyxcinema.vn</p>
+          <div class="pt-2">
+            <span class="block text-[11px] text-neutral-500 mb-1">Tải ứng dụng ONYX App:</span>
+            <div class="flex gap-2">
+              <span class="px-2.5 py-1 bg-[#1e1e24] border border-neutral-700 rounded text-[10px] text-neutral-300">App Store</span>
+              <span class="px-2.5 py-1 bg-[#1e1e24] border border-neutral-700 rounded text-[10px] text-neutral-300">Google Play</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-neutral-500 text-[11px]">
+        <div>
+          © 2026 ONYX CINEMA VIETNAM. Tất cả quyền được bảo lưu.
+        </div>
+        <div class="flex items-center gap-4">
+          <span>Đối tác thanh toán:</span>
+          <span class="text-neutral-300 font-bold">MoMo</span>
+          <span class="text-neutral-300 font-bold">ZaloPay</span>
+          <span class="text-neutral-300 font-bold">Visa/Mastercard</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 4. BOTTOM DYNAMIC BOOKING BAR -->
+  <div class="fixed bottom-0 left-0 right-0 z-50 bg-[#18181b]/95 backdrop-blur-xl border-t border-[#FFC107]/30 shadow-[0_-10px_30px_rgba(0,0,0,0.8)] px-4 py-3">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="w-full sm:w-auto">
+        <div class="flex items-center gap-2 text-xs mb-1">
+          <span class="px-2 py-0.5 rounded bg-[#FFC107] text-black font-extrabold text-[10px]" id="bar-hall">ONYX HALL 01</span>
+          <span class="px-1.5 py-0.5 rounded bg-red-600 text-white font-extrabold text-[10px]" id="bar-rating">T18</span>
+          <span class="text-white font-bold text-sm truncate" id="bar-title">Furiosa: Câu Chuyện Từ Mad Max</span>
+          <span class="text-neutral-400">• Suất chiếu: <strong class="text-[#FFC107]" id="bar-time">19:15 (Hôm nay)</strong></span>
+        </div>
+        <div class="flex items-center gap-3 text-sm">
+          <div class="text-white">
+            Số lượng ghế: <span class="font-bold text-[#FFC107]" id="bar-seats-count">0 chỗ</span>
+            <span class="text-neutral-500 text-xs pl-1 font-mono" id="bar-seats-list"></span>
+          </div>
+          <span class="text-neutral-600">|</span>
+          <div class="text-white">
+            Tổng tiền: <span class="font-extrabold text-[#FFC107] text-base" id="bar-total-cost">0 VNĐ</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full sm:w-auto flex items-center justify-end">
+        <button id="btn-checkout" onclick="openPaymentModal()" disabled class="w-full sm:w-auto px-8 py-3 rounded-xl bg-neutral-800 text-neutral-500 font-bold text-sm transition-all flex items-center justify-center gap-2 cursor-not-allowed">
+          <span>🔒 CHƯA CHỌN GHẾ</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOVIE DETAIL POPUP MODAL -->
+  <div id="detail-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-[#18181b] border border-[#FFC107]/40 rounded-2xl max-w-2xl w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <button onclick="closeDetailModal()" class="absolute top-4 right-4 text-neutral-400 hover:text-white text-xl z-10 bg-black/40 w-8 h-8 rounded-full flex items-center justify-center cursor-pointer">✕</button>
+      
+      <div class="flex flex-col md:flex-row gap-6">
+        <div class="w-full md:w-1/3 aspect-[3/4] rounded-xl overflow-hidden bg-neutral-900 shrink-0">
+          <img id="modal-detail-poster" src="" alt="Movie Poster" class="w-full h-full object-cover">
+        </div>
+        <div class="w-full md:w-2/3 space-y-3">
+          <div class="flex items-center gap-2">
+            <span id="modal-detail-rating" class="px-2.5 py-0.5 rounded text-xs font-bold bg-[#FFC107] text-black"></span>
+            <span id="modal-detail-duration" class="text-xs text-neutral-400"></span>
+          </div>
+          <h3 id="modal-detail-title" class="text-2xl font-extrabold font-display text-white"></h3>
+          <div class="text-xs text-neutral-400 space-y-1">
+            <p><strong>Thể loại:</strong> <span id="modal-detail-genre"></span></p>
+            <p><strong>Đạo diễn:</strong> <span id="modal-detail-director"></span></p>
+            <p><strong>Phòng chiếu:</strong> <span id="modal-detail-hall"></span></p>
+          </div>
+          <div class="pt-2 border-t border-neutral-800">
+            <h4 class="text-xs font-bold text-[#FFC107] uppercase tracking-wider mb-1">Mô Tả Phim</h4>
+            <p id="modal-detail-synopsis" class="text-xs text-neutral-300 leading-relaxed max-h-36 overflow-y-auto pr-1"></p>
+          </div>
+          <div class="pt-3 border-t border-neutral-800">
+            <span class="text-xs font-bold text-white block mb-2">Chọn suất chiếu ngay:</span>
+            <div id="modal-detail-showtimes" class="flex flex-wrap gap-2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAYMENT MODAL -->
+  <div id="payment-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-[#18181b] border border-[#FFC107]/40 rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
+      <button onclick="closePaymentModal()" class="absolute top-4 right-4 text-neutral-400 hover:text-white text-xl">✕</button>
+      
+      <h3 class="text-xl font-bold font-display text-white mb-1">XÁC NHẬN THANH TOÁN</h3>
+      <p class="text-xs text-neutral-400 mb-4">Vui lòng chọn phương thức thanh toán để hoàn tất đặt vé.</p>
+
+      <div class="p-3.5 rounded-xl bg-[#222226] border border-neutral-700/60 mb-5 space-y-2 text-xs">
+        <div class="flex justify-between text-neutral-300">
+          <span>Phim:</span>
+          <strong class="text-white" id="modal-movie-title">Furiosa</strong>
+        </div>
+        <div class="flex justify-between text-neutral-300">
+          <span>Suất chiếu:</span>
+          <strong class="text-[#FFC107]" id="modal-showtime">19:15</strong>
+        </div>
+        <div class="flex justify-between text-neutral-300">
+          <span>Ghế chọn:</span>
+          <strong class="text-white" id="modal-seats">A01, A02</strong>
+        </div>
+        <div class="border-t border-neutral-700 pt-2 flex justify-between text-sm">
+          <span class="font-bold text-white">Tổng cộng:</span>
+          <strong class="text-[#FFC107] font-extrabold" id="modal-total">190.000 VNĐ</strong>
+        </div>
+      </div>
+
+      <div class="space-y-2.5 mb-6">
+        <div onclick="selectPayment('momo')" id="pay-momo" class="pay-card active flex items-center justify-between p-3 rounded-xl bg-[#222226] border border-neutral-700 cursor-pointer">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-pink-600/20 text-pink-500 font-bold flex items-center justify-center text-xs">MoMo</div>
+            <span class="text-xs font-semibold text-white">Ví MoMo</span>
+          </div>
+          <div class="pay-dot w-4 h-4 rounded-full border border-neutral-600"></div>
+        </div>
+        <div onclick="selectPayment('zalopay')" id="pay-zalopay" class="pay-card flex items-center justify-between p-3 rounded-xl bg-[#222226] border border-neutral-700 cursor-pointer">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-blue-600/20 text-blue-400 font-bold flex items-center justify-center text-xs">Zalo</div>
+            <span class="text-xs font-semibold text-white">Ví ZaloPay</span>
+          </div>
+          <div class="pay-dot w-4 h-4 rounded-full border border-neutral-600"></div>
+        </div>
+        <div onclick="selectPayment('card')" id="pay-card" class="pay-card flex items-center justify-between p-3 rounded-xl bg-[#222226] border border-neutral-700 cursor-pointer">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-emerald-600/20 text-emerald-400 font-bold flex items-center justify-center text-xs">ATM</div>
+            <span class="text-xs font-semibold text-white">Thẻ ATM / Thẻ quốc tế</span>
+          </div>
+          <div class="pay-dot w-4 h-4 rounded-full border border-neutral-600"></div>
+        </div>
+      </div>
+
+      <button onclick="processPayment()" class="w-full py-3 rounded-xl bg-[#FFC107] text-black font-extrabold text-sm hover:bg-[#FFD700] transition-colors shadow-lg shadow-[#FFC107]/20">
+        THANH TOÁN NGAY
+      </button>
+    </div>
+  </div>
+
+  <!-- TICKET SUCCESS MODAL -->
+  <div id="ticket-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-[#18181b] border border-[#FFC107] rounded-2xl max-w-sm w-full p-6 text-center relative shadow-2xl">
+      <div class="w-12 h-12 rounded-full bg-[#FFC107]/20 text-[#FFC107] text-2xl flex items-center justify-center mx-auto mb-3">
+        ✓
+      </div>
+      <h3 class="text-xl font-bold font-display text-white">ĐẶT VÉ THÀNH CÔNG!</h3>
+      <p class="text-xs text-neutral-400 mt-1 mb-4">Cảm ơn bạn đã lựa chọn ONYX Cinema.</p>
+
+      <div class="bg-white text-black p-4 rounded-xl text-left font-mono text-xs space-y-1.5 mb-5 shadow-inner">
+        <div class="text-center font-extrabold text-sm border-b border-dashed border-gray-300 pb-2 mb-2">
+          ONYX CINEMA TICKET
+        </div>
+        <div>Phim: <strong id="ticket-movie">---</strong></div>
+        <div>Rạp: <strong id="ticket-hall">---</strong></div>
+        <div>Suất chiếu: <strong id="ticket-time">---</strong></div>
+        <div>Ghế: <strong id="ticket-seats">---</strong></div>
+        <div>Tổng tiền: <strong id="ticket-total">---</strong></div>
+        <div class="pt-3 flex justify-center">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=ONYX-TICKET-SUCCESS" class="w-24 h-24 rounded">
+        </div>
+      </div>
+
+      <button onclick="closeTicketModal()" class="w-full py-2.5 rounded-xl bg-neutral-800 text-white font-bold text-xs hover:bg-neutral-700">
+        ĐÓNG & HOÀN TẤT
+      </button>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    const moviesData = [
+      {
+        id: "m1",
+        title: "Furiosa: Câu Chuyện Từ Mad Max",
+        poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8WWb1LtmTbg8z7aYuIhPoRRbfW2ZV1vQCKDV_8Jaq-g&s=10",
+        genre: "Hành động, Phiêu lưu",
+        duration: "148 Phút",
+        rating: "T18",
+        hall: "ONYX HALL 01 • Dolby Atmos",
+        director: "George Miller",
+        synopsis: "Khi thế giới sụp đổ, Nữ chiến binh trẻ Furiosa bị bắt khỏi Nơi Xanh của Nhiều Người Mẹ và rơi vào tay Băng cướp Xe cơ giới thống trị bởi Lãnh chúa Dementus. Băng qua Vùng Đất Chết, họ giáp mặt với Citadel do Immortan Joe cai trị. Furiosa phải sống sót qua nhiều thử thách để tìm đường trở về nhà.",
+        showtimes: ["19:15", "21:00", "22:30"]
+      },
+      {
+        id: "m2",
+        title: "Godzilla x Kong: Đế Chế Mới",
+        poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyh4BY-QSqn5T-RAqMTBOaPeDyltIcDvqpO7H07j0jrg&s=10",
+        genre: "Hành Động, Sci-Fi",
+        duration: "115 Phút",
+        rating: "T16",
+        hall: "ONYX HALL 02 • IMAX 3D",
+        director: "Adam Wingard",
+        synopsis: "Trận chiến nảy lửa đưa Kong và Godzilla hợp lực chống lại mối đe dọa sinh tử khổng lồ ẩn giấu trong thế giới của chúng ta. Phim đào sâu hơn vào lịch sử của các Titan, nguồn gốc của chúng cũng như những bí ẩn tại Đảo Đầu Lâu.",
+        showtimes: ["18:30", "20:45", "22:30"]
+      },
+      {
+        id: "m3",
+        title: "Dune: Hành Tinh Cát 2",
+        poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFbAr09lW4h_F4iNBWRsXT2tp_SEUOjNOuFsE6_SMZJg&s=10",
+        genre: "Viễn tưởng, Hành động",
+        duration: "166 Phút",
+        rating: "IMAX",
+        hall: "Rạp IMAX Laser ONYX",
+        director: "Denis Villeneuve",
+        synopsis: "Paul Atreides tái hợp với Chani và người Fremen trong hành trình trả thù những kẻ đã hủy hoại gia đình mình. Đứng trước sự lựa chọn giữa tình yêu của đời mình và số phận của vũ trụ, Paul cố gắng ngăn chặn một tương lai khủng kíp mà chỉ mình anh có thể tiên đoán.",
+        showtimes: ["19:00", "21:30"]
+      },
+      {
+        id: "m4",
+        title: "Kung Fu Panda 4 & Lumo",
+        poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNBckfoskxnJnMOfaCw5Uvr9i18G44ptPj9IY8bn7y1g&s=10",
+        genre: "Hoạt hình, Hài hước",
+        duration: "94 Phút",
+        rating: "P",
+        hall: "ONYX HALL 03 • Family Suite",
+        director: "Mike Mitchell",
+        synopsis: "Thần Long Đại Hiệp Po được chọn trở thành Thủ lĩnh Thần linh của Thung lũng Bình Yên. Tuy nhiên, cậu phải nhanh chóng tìm kiếm và huấn luyện một Thần Long Đại Hiệp mới trước khi đối mặt với nữ phù thủy biến hình gian ác Tắc Kè Cáo.",
+        showtimes: ["17:30", "19:15", "21:00"]
+      }
+    ];
+
+    let currentMovie = moviesData[0];
+    let currentShowtime = moviesData[0].showtimes[0];
+    let selectedSeats = new Map();
+    // Lưu trữ danh sách ghế đã được đặt thành công cho từng suất chiếu (Key: movieId_showtime, Value: Set các ghế đã đặt)
+    let bookedSeatsMap = new Map();
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderMovies();
+      renderSeats();
+      updateBookingBar();
+      startCountdown();
+    });
+
+    function renderMovies() {
+      const container = document.getElementById("movie-grid");
+      container.innerHTML = moviesData.map(movie => {
+        const isActive = movie.id === currentMovie.id;
+        return `
+          <div class="movie-card relative bg-[#18181b] rounded-2xl p-3.5 border border-[#2e2e33] cursor-pointer transition-all duration-300 hover:border-[#FFC107] ${isActive ? 'active' : ''}" id="card-${movie.id}">
+            <div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-3.5 bg-neutral-900 group" onclick="openDetailModal('${movie.id}')">
+              <img src="${movie.poster}" alt="${movie.title}" class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20"></div>
+              
+              <span class="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-md text-[11px] font-bold bg-black/70 backdrop-blur-md text-[#FFC107] border border-[#FFC107]/30">${movie.rating}</span>
+              
+              <span class="badge-selected hidden absolute top-2.5 right-2.5 px-2 py-0.5 rounded bg-[#FFC107] text-black text-[11px] font-extrabold uppercase tracking-wider items-center gap-1 shadow-md">
+                ✓ Đang chọn
+              </span>
+
+              <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
+                <span class="px-3 py-1.5 rounded-full bg-[#FFC107] text-black font-extrabold text-xs shadow-lg">ℹ️ Xem Mô Tả</span>
+              </div>
+
+              <span class="absolute bottom-2.5 left-2.5 text-xs text-neutral-300 font-medium">${movie.duration} • ${movie.genre}</span>
+            </div>
+            
+            <div class="flex items-start justify-between gap-2">
+              <div onclick="selectMovie('${movie.id}')" class="cursor-pointer flex-1">
+                <h3 class="font-bold text-base text-white truncate">${movie.title}</h3>
+                <p class="text-xs text-neutral-400 mt-0.5 line-clamp-1">Đạo diễn: ${movie.director}</p>
+              </div>
+            </div>
+
+            <div class="mt-3.5 pt-3 border-t border-[#2a2a30]">
+              <span class="text-[11px] font-semibold text-neutral-400 block mb-2 uppercase tracking-wider">Suất chiếu:</span>
+              <div class="flex flex-wrap gap-1.5" id="showtimes-${movie.id}">
+                ${movie.showtimes.map(st => {
+                  const isStActive = (movie.id === currentMovie.id) && (st === currentShowtime);
+                  return `
+                    <button onclick="selectShowtime('${movie.id}', '${st}')" class="showtime-pill px-2.5 py-1 text-xs rounded-md bg-[#222226] border border-neutral-700 text-neutral-300 select-none transition-all cursor-pointer ${isStActive ? 'active' : ''}">
+                      ${st}
+                    </button>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function selectMovie(movieId) {
+      if (currentMovie.id === movieId) return;
+      currentMovie = moviesData.find(m => m.id === movieId);
+      currentShowtime = currentMovie.showtimes[0];
+      selectedSeats.clear();
+      renderMovies();
+      renderSeats();
+      updateBookingBar();
+    }
+
+    function selectShowtime(movieId, st) {
+      if (currentMovie.id !== movieId || currentShowtime !== st) {
+        currentMovie = moviesData.find(m => m.id === movieId);
+        currentShowtime = st;
+        selectedSeats.clear();
+        renderMovies();
+        renderSeats();
+        updateBookingBar();
+      }
+    }
+
+    function openDetailModal(movieId) {
+      const movie = moviesData.find(m => m.id === movieId);
+      if (!movie) return;
+
+      document.getElementById("modal-detail-poster").src = movie.poster;
+      document.getElementById("modal-detail-title").textContent = movie.title;
+      document.getElementById("modal-detail-rating").textContent = movie.rating;
+      document.getElementById("modal-detail-duration").textContent = movie.duration;
+      document.getElementById("modal-detail-genre").textContent = movie.genre;
+      document.getElementById("modal-detail-director").textContent = movie.director;
+      document.getElementById("modal-detail-hall").textContent = movie.hall;
+      document.getElementById("modal-detail-synopsis").textContent = movie.synopsis;
+
+      const showtimesContainer = document.getElementById("modal-detail-showtimes");
+      showtimesContainer.innerHTML = movie.showtimes.map(st => `
+        <button onclick="selectShowtime('${movie.id}', '${st}'); closeDetailModal();" class="px-3 py-1.5 rounded-lg bg-[#FFC107] text-black font-bold text-xs hover:bg-[#FFD700] transition-colors cursor-pointer">
+          ${st}
+        </button>
+      `).join('');
+
+      document.getElementById("detail-modal").classList.remove("hidden");
+      document.getElementById("detail-modal").classList.add("flex");
+    }
+
+    function closeDetailModal() {
+      document.getElementById("detail-modal").classList.add("hidden");
+      document.getElementById("detail-modal").classList.remove("flex");
+    }
+
+    function renderSeats() {
+      const stdContainer = document.getElementById("standard-seats-container");
+      const vipContainer = document.getElementById("vip-seats-container");
+
+      const rowsStd = ['A', 'B', 'C', 'D', 'E', 'F'];
+      const rowsVip = ['G', 'H', 'I', 'J'];
+
+      const currentKey = `${currentMovie.id}_${currentShowtime}`;
+      const bookedSet = bookedSeatsMap.get(currentKey) || new Set();
+
+      stdContainer.innerHTML = rowsStd.map(row => createRowHTML(row, 12, 95000, false, bookedSet)).join('');
+      vipContainer.innerHTML = rowsVip.map(row => createRowHTML(row, 12, 290000, true, bookedSet)).join('');
+    }
+
+    function createRowHTML(row, seatCount, price, isVip, bookedSet) {
+      let seatsHTML = '';
+      for (let i = 1; i <= seatCount; i++) {
+        const seatId = `${row}${i < 10 ? '0' + i : i}`;
+        
+        // Kiểm tra xem ghế đã được đặt từ trước (hoặc hệ thống mặc định bận) hay chưa
+        const isDefaultOccupied = (i % 2 === 0 && i % 3 === 0) || 
+                           (row === 'A' && (i === 2 || i === 5 || i === 9)) ||
+                           (row === 'B' && (i === 1 || i === 4 || i === 8 || i === 11)) ||
+                           (row === 'C' && (i >= 3 && i <= 8)) || 
+                           (row === 'D' && (i === 2 || i === 6 || i === 7 || i === 10)) || 
+                           (row === 'E' && (i === 3 || i === 5 || i === 9)) ||
+                           (row === 'F' && (i === 1 || i === 4 || i === 8 || i === 12)) ||
+                           (row === 'G' && (i === 2 || i === 5 || i === 7 || i === 10)) ||
+                           (row === 'H' && (i >= 3 && i <= 9)) ||
+                           (row === 'I' && (i === 1 || i === 6 || i === 11)) ||
+                           (row === 'J' && (i === 4 || i === 8 || i === 10));
+
+        const isBooked = bookedSet.has(seatId) || isDefaultOccupied;
+
+        if (isBooked) {
+          seatsHTML += `
+            <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-[#161619] border border-neutral-900 text-[9px] sm:text-[10px] flex items-center justify-center text-neutral-600 cursor-not-allowed select-none opacity-40">
+              ${seatId}
+            </div>
+          `;
+        } else {
+          seatsHTML += `
+            <input type="checkbox" id="seat-${seatId}" class="seat-checkbox sr-only" onchange="toggleSeat('${seatId}', ${price})">
+            <label for="seat-${seatId}" class="${isVip ? 'vip-seat-label bg-[#2a2410] border-[#FFC107]/40 text-[#FFC107]' : 'seat-label bg-[#222226] border-neutral-700 text-neutral-300'} w-6 h-6 sm:w-7 sm:h-7 rounded-md border text-[9px] sm:text-[10px] flex items-center justify-center cursor-pointer hover:border-[#FFC107] select-none">
+              ${seatId}
+            </label>
+          `;
+        }
+
+        if (i === 6) {
+          seatsHTML += `<div class="w-3 sm:w-5"></div>`;
+        }
+      }
+
+      return `
+        <div class="flex items-center gap-2 justify-center">
+          <span class="w-5 text-xs font-bold text-neutral-400 text-center">${row}</span>
+          <div class="flex items-center gap-1 sm:gap-1.5">
+            ${seatsHTML}
+          </div>
+          <span class="w-5 text-xs font-bold text-neutral-400 text-center">${row}</span>
+        </div>
+      `;
+    }
+
+    function toggleSeat(seatId, price) {
+      if (selectedSeats.has(seatId)) {
+        selectedSeats.delete(seatId);
+      } else {
+        selectedSeats.set(seatId, price);
+      }
+      updateBookingBar();
+    }
+
+    function updateBookingBar() {
+      document.getElementById("bar-title").textContent = currentMovie.title;
+      document.getElementById("bar-hall").textContent = currentMovie.hall.split('•')[0].trim();
+      document.getElementById("bar-rating").textContent = currentMovie.rating;
+      document.getElementById("bar-time").textContent = `${currentShowtime} (Hôm nay)`;
+
+      const count = selectedSeats.size;
+      let totalCost = 0;
+      const seatListArr = [];
+
+      selectedSeats.forEach((price, id) => {
+        totalCost += price;
+        seatListArr.push(id);
+      });
+
+      document.getElementById("bar-seats-count").textContent = `${count} chỗ`;
+      document.getElementById("bar-seats-list").textContent = count > 0 ? `(${seatListArr.sort().join(', ')})` : '';
+      document.getElementById("bar-total-cost").textContent = `${totalCost.toLocaleString('vi-VN')} VNĐ`;
+
+      const btnCheckout = document.getElementById("btn-checkout");
+      if (count > 0) {
+        btnCheckout.disabled = false;
+        btnCheckout.className = "w-full sm:w-auto px-8 py-3 rounded-xl bg-[#FFC107] text-black font-extrabold text-sm hover:bg-[#FFD700] transition-all flex items-center justify-center gap-2 shadow-lg shadow-[#FFC107]/20 cursor-pointer";
+        btnCheckout.innerHTML = `<span>TIẾP TỤC THANH TOÁN (${count})</span> ➔`;
+      } else {
+        btnCheckout.disabled = true;
+        btnCheckout.className = "w-full sm:w-auto px-8 py-3 rounded-xl bg-neutral-800 text-neutral-500 font-bold text-sm transition-all flex items-center justify-center gap-2 cursor-not-allowed";
+        btnCheckout.innerHTML = `<span>🔒 CHƯA CHỌN GHẾ</span>`;
+      }
+    }
+
+    function openPaymentModal() {
+      if (selectedSeats.size === 0) return;
+      document.getElementById("modal-movie-title").textContent = currentMovie.title;
+      document.getElementById("modal-showtime").textContent = `${currentShowtime} (Hôm nay)`;
+      
+      const seatsArr = Array.from(selectedSeats.keys()).sort().join(', ');
+      document.getElementById("modal-seats").textContent = seatsArr;
+
+      let total = 0;
+      selectedSeats.forEach(p => total += p);
+      document.getElementById("modal-total").textContent = `${total.toLocaleString('vi-VN')} VNĐ`;
+
+      document.getElementById("payment-modal").classList.remove("hidden");
+      document.getElementById("payment-modal").classList.add("flex");
+    }
+
+    function closePaymentModal() {
+      document.getElementById("payment-modal").classList.add("hidden");
+      document.getElementById("payment-modal").classList.remove("flex");
+    }
+
+    function selectPayment(type) {
+      document.querySelectorAll('.pay-card').forEach(el => el.classList.remove('active'));
+      document.getElementById(`pay-${type}`).classList.add('active');
+    }
+
+    function processPayment() {
+      closePaymentModal();
+
+      // Lưu các ghế vừa đặt vào danh sách đã đặt của suất chiếu hiện tại
+      const currentKey = `${currentMovie.id}_${currentShowtime}`;
+      if (!bookedSeatsMap.has(currentKey)) {
+        bookedSeatsMap.set(currentKey, new Set());
+      }
+      const bookedSet = bookedSeatsMap.get(currentKey);
+      selectedSeats.forEach((price, seatId) => {
+        bookedSet.add(seatId);
+      });
+
+      document.getElementById("ticket-movie").textContent = currentMovie.title;
+      document.getElementById("ticket-hall").textContent = currentMovie.hall;
+      document.getElementById("ticket-time").textContent = `${currentShowtime} (Hôm nay)`;
+      document.getElementById("ticket-seats").textContent = Array.from(selectedSeats.keys()).sort().join(', ');
+      
+      let total = 0;
+      selectedSeats.forEach(p => total += p);
+      document.getElementById("ticket-total").textContent = `${total.toLocaleString('vi-VN')} VNĐ`;
+
+      document.getElementById("ticket-modal").classList.remove("hidden");
+      document.getElementById("ticket-modal").classList.add("flex");
+    }
+
+    function closeTicketModal() {
+      document.getElementById("ticket-modal").classList.add("hidden");
+      document.getElementById("ticket-modal").classList.remove("flex");
+      
+      selectedSeats.clear();
+      renderSeats(); // Cập nhật lại giao diện ghế: ghế vừa đặt sẽ chuyển thành màu đen và khóa lại
+      updateBookingBar();
+    }
+
+    function startCountdown() {
+      let duration = 3 * 3600 + 42 * 60 + 18;
+      const timerEl = document.getElementById("countdown");
+      setInterval(() => {
+        duration--;
+        if (duration < 0) duration = 3 * 3600;
+        const h = Math.floor(duration / 3600).toString().padStart(2, '0');
+        const m = Math.floor((duration % 3600) / 60).toString().padStart(2, '0');
+        const s = (duration % 60).toString().padStart(2, '0');
+        timerEl.textContent = `${h}:${m}:${s}`;
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
